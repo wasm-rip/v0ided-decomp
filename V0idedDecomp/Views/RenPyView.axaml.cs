@@ -1,0 +1,46 @@
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Platform.Storage;
+using V0idedDecomp.ViewModels;
+
+namespace V0idedDecomp.Views;
+
+public partial class RenPyView : UserControl
+{
+    public RenPyView()
+    {
+        InitializeComponent();
+    }
+
+    private void InitializeComponent()
+    {
+        Avalonia.Markup.Xaml.AvaloniaXamlLoader.Load(this);
+    }
+
+    private async void BrowseInput_Click(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is not RenPyViewModel vm) return;
+        
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel is null) return;
+        
+        var storageProvider = topLevel.StorageProvider;
+        
+        var result = await storageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
+        {
+            Title = "Select Ren'Py File",
+            AllowMultiple = false,
+            FileTypeFilter = new[]
+            {
+                new FilePickerFileType("Ren'Py Files") { Patterns = new[] { "*.rpa", "*.rpyc" } },
+                new FilePickerFileType("All Files") { Patterns = new[] { "*.*" } }
+            }
+        });
+        
+        if (result.Count > 0)
+        {
+            vm.InputFilePath = result[0].Path.LocalPath;
+            vm.StatusText = "Selected: " + System.IO.Path.GetFileName(vm.InputFilePath);
+        }
+    }
+}

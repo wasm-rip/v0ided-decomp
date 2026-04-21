@@ -1,0 +1,84 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:V0idedDecomp.ViewModels"
+        xmlns:views="using:V0idedDecomp.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="650"
+        x:Class="V0idedDecomp.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="v0ided-decomp"
+        Width="700"
+        Height="650">
+
+    <Window.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="arial"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#16213e"/>
+            <Setter Property="Foreground" Value="#eaeaea"/>
+            <Setter Property="BorderBrush" Value="#0f3460"/>
+            <Setter Property="Padding" Value="8,6"/>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#0f3460"/>
+            <Setter Property="Foreground" Value="#eaeaea"/>
+            <Setter Property="Padding" Value="16,8"/>
+        </Style>
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#1a4a7a"/>
+        </Style>
+        <Style Selector="CheckBox">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="Foreground" Value="#b8b8b8"/>
+        </Style>
+        <Style Selector="TabItem">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#888"/>
+            <Setter Property="Padding" Value="20,10"/>
+        </Style>
+        <Style Selector="TabItem:selected">
+            <Setter Property="Foreground" Value="#fff"/>
+        </Style>
+    </Window.Styles>
+
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+            <GradientStop Offset="0" Color="#0a0a12"/>
+            <GradientStop Offset="1" Color="#1a1a2e"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <!-- Snow particles -->
+        <Canvas x:Name="SnowCanvas" IsHitTestVisible="False"/>
+
+        <StackPanel Margin="20">
+            <!-- Header -->
+            <TextBlock Text="v0ided-decomp" FontSize="32" FontWeight="Bold" Foreground="#eaeaea" Margin="0,0,0,20"/>
+
+            <!-- Tabs -->
+            <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+                <TabItem Header="godot">
+                    <views:GodotView DataContext="{Binding Godot}"/>
+                </TabItem>
+                <TabItem Header="love2d">
+                    <views:Love2DView DataContext="{Binding Love2D}"/>
+                </TabItem>
+                <TabItem Header="gamemaker">
+                    <views:GameMakerView DataContext="{Binding GameMaker}"/>
+                </TabItem>
+                <TabItem Header="ren'py">
+                    <views:RenPyView DataContext="{Binding RenPy}"/>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+
+</Window>
