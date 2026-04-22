@@ -83,6 +83,9 @@
                 <TabItem Header="rpgmaker">
                     <views:RPGMakerView DataContext="{Binding RPGMaker}"/>
                 </TabItem>
+                <TabItem Header="fusion">
+                    <views:FusionView DataContext="{Binding Fusion}"/>
+                </TabItem>
             </TabControl>
         </StackPanel>
     </Grid>

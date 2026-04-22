@@ -1,0 +1,88 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:V0idedDecomp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+             x:Class="V0idedDecomp.Views.FusionView"
+             x:DataType="vm:FusionViewModel">
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="FontFamily" Value="arial"/>
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#16213e"/>
+            <Setter Property="Foreground" Value="#eaeaea"/>
+            <Setter Property="BorderBrush" Value="#0f3460"/>
+            <Setter Property="Padding" Value="8,6"/>
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Background" Value="#0f3460"/>
+            <Setter Property="Foreground" Value="#eaeaea"/>
+            <Setter Property="Padding" Value="16,8"/>
+        </Style>
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#1a4a7a"/>
+        </Style>
+        <Style Selector="CheckBox">
+            <Setter Property="FontFamily" Value="arial"/>
+            <Setter Property="Foreground" Value="#b8b8b8"/>
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel Margin="10">
+        <TextBlock Text="fusion decompiler" FontSize="18" Foreground="#eaeaea" Margin="0,0,0,15"/>
+
+        <!-- Input -->
+        <Border Background="#12121c" BorderBrush="#2a2a40" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="input file (.exe, .ccx, .mfa, .apk, .ipa)" Foreground="#888" FontSize="11" Margin="0,0,0,5"/>
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBox Text="{Binding InputFilePath}" Grid.Column="0"/>
+                    <Button Grid.Column="1" Content="browse" Click="BrowseInput_Click" Margin="8,0,0,0"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- Output -->
+        <Border Background="#12121c" BorderBrush="#2a2a40" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <StackPanel>
+                <TextBlock Text="output folder" Foreground="#888" FontSize="11" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding OutputDirectory}" IsReadOnly="True"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Options -->
+        <Border Background="#12121c" BorderBrush="#2a2a40" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Content="extract images" IsChecked="{Binding ExtractImages}" Margin="0,0,20,0"/>
+                <CheckBox Content="extract audio" IsChecked="{Binding ExtractAudio}" Margin="0,0,20,0"/>
+                <CheckBox Content="extract fonts" IsChecked="{Binding ExtractFonts}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Decompile Button -->
+        <Button Content="decompile" Command="{Binding DecompileCommand}" IsEnabled="{Binding !IsProcessing}" Margin="0,0,0,15"/>
+
+        <!-- Status -->
+        <TextBlock Text="{Binding StatusText}" Foreground="#888" Margin="0,0,0,10"/>
+
+        <!-- Log -->
+        <Border Background="#080810" BorderBrush="#1a1a2e" BorderThickness="1" CornerRadius="4" Padding="8" Height="200">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding LogLines}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" FontFamily="arial" FontSize="10" Foreground="#00ff00" TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </StackPanel>
+</UserControl>

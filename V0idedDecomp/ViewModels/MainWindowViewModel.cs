@@ -13,6 +13,7 @@ public partial class MainWindowViewModel : ViewModelBase
     public RenPyViewModel RenPy { get; } = new();
     public UnityViewModel Unity { get; } = new();
     public RPGMakerViewModel RPGMaker { get; } = new();
+    public FusionViewModel Fusion { get; } = new();
 
     public string AppTitle { get; } = "v0ided-decomp";
 }
