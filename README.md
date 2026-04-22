@@ -5,5 +5,7 @@ one way decompiler for games
 net sdk 10.0.0 
 
 # how to run
+
 cd v0ided-decomp/publish ..? i think idk
+
 dotnet v0ided-decomp.dll
