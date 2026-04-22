@@ -1,0 +1,40 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.0/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.0": {},
+    ".NETStandard,Version=v2.0/": {
+      "RPGMakerDecrypter.RGSSAD/2.0.0": {
+        "dependencies": {
+          "RPGMakerDecrypter.Common": "1.0.0"
+        },
+        "runtime": {
+          "RPGMakerDecrypter.RGSSAD.dll": {}
+        }
+      },
+      "RPGMakerDecrypter.Common/1.0.0": {
+        "runtime": {
+          "RPGMakerDecrypter.Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RPGMakerDecrypter.RGSSAD/2.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RPGMakerDecrypter.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

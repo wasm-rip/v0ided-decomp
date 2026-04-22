@@ -11,6 +11,8 @@ public partial class MainWindowViewModel : ViewModelBase
     public Love2DViewModel Love2D { get; } = new();
     public GameMakerViewModel GameMaker { get; } = new();
     public RenPyViewModel RenPy { get; } = new();
+    public UnityViewModel Unity { get; } = new();
+    public RPGMakerViewModel RPGMaker { get; } = new();
 
     public string AppTitle { get; } = "v0ided-decomp";
 }

@@ -77,6 +77,12 @@
                 <TabItem Header="ren'py">
                     <views:RenPyView DataContext="{Binding RenPy}"/>
                 </TabItem>
+                <TabItem Header="unity">
+                    <views:UnityView DataContext="{Binding Unity}"/>
+                </TabItem>
+                <TabItem Header="rpgmaker">
+                    <views:RPGMakerView DataContext="{Binding RPGMaker}"/>
+                </TabItem>
             </TabControl>
         </StackPanel>
     </Grid>
