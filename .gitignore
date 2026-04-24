@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+publish/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+Logs/
+*.log
+
+# Nebula/Fusion runtime
+fusion/Dumps/
+fusion/Logs/
+*.dylib
+*.so
+*.exe
+
+# Secrets
+*.env
+*.key
