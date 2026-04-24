@@ -1,4 +1,7 @@
+using System;
+using System;
 using Avalonia.Controls;
+using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using V0idedDecomp.ViewModels;
@@ -41,6 +44,35 @@ public partial class GodotView : UserControl
         {
             vm.InputFilePath = result[0].Path.LocalPath;
             vm.StatusText = "Selected: " + System.IO.Path.GetFileName(vm.InputFilePath);
+        }
+    }
+
+    private async void CopyLog_Click(object? sender, RoutedEventArgs e)
+    {
+        if (DataContext is not GodotViewModel vm) return;
+        
+        var logText = string.Join(Environment.NewLine, vm.LogLines);
+        if (string.IsNullOrEmpty(logText))
+        {
+            vm.StatusText = "Log is empty";
+            return;
+        }
+        
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel is null) return;
+        
+        try
+        {
+            var clipboard = topLevel.Clipboard;
+            if (clipboard != null)
+            {
+                await clipboard.SetTextAsync(logText);
+                vm.StatusText = "Log copied to clipboard";
+            }
+        }
+        catch
+        {
+            vm.StatusText = "Failed to copy to clipboard";
         }
     }
 }

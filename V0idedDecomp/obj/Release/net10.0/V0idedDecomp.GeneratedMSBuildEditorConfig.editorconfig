@@ -31,6 +31,9 @@ build_property.EnableCodeStyleSeverity =
 [/Volumes/Seagate/v0ided-decomp/V0idedDecomp/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/Volumes/Seagate/v0ided-decomp/V0idedDecomp/Views/FusionView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/Volumes/Seagate/v0ided-decomp/V0idedDecomp/Views/GameMakerView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -44,4 +47,10 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [/Volumes/Seagate/v0ided-decomp/V0idedDecomp/Views/RenPyView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Volumes/Seagate/v0ided-decomp/V0idedDecomp/Views/RPGMakerView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[/Volumes/Seagate/v0ided-decomp/V0idedDecomp/Views/UnityView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -133,18 +133,23 @@ public partial class Love2DViewModel : ObservableObject
 
     private string? FindLove2DScripts()
     {
-        var possiblePaths = new[]
+        var baseDirs = new[]
         {
-            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "love2d")),
-            Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "love2d")),
-            "/Volumes/Seagate/v0ided-decomp/love2d"
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..")),
+            AppDomain.CurrentDomain.BaseDirectory,
+            Directory.GetCurrentDirectory(),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp")
         };
 
-        foreach (var path in possiblePaths)
+        foreach (var baseDir in baseDirs)
         {
-            if (Directory.Exists(path) && File.Exists(Path.Combine(path, "repack.py")))
+            var love2dPath = Path.Combine(baseDir, "love2d");
+            if (Directory.Exists(love2dPath) && File.Exists(Path.Combine(love2dPath, "repack.py")))
             {
-                return path;
+                return love2dPath;
             }
         }
 

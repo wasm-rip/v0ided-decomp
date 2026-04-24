@@ -26,6 +26,9 @@ public partial class FusionViewModel : ObservableObject
     private bool _extractFonts = true;
 
     [ObservableProperty]
+    private bool _generateMfa = true;
+
+    [ObservableProperty]
     private string _statusText = "Ready";
 
     [ObservableProperty]
@@ -83,11 +86,12 @@ public partial class FusionViewModel : ObservableObject
             var outputPath = Path.Combine(OutputDirectory, gameName, "ExportedProject");
             Directory.CreateDirectory(outputPath);
 
-            var args = $"\"{fullPath}\" -o \"{outputPath}\"";
+            var args = GenerateMfaFlag(fullPath, outputPath);
             if (ExtractImages) args += " -i";
             if (ExtractAudio) args += " -s";
 
-            await RunNebulaAsync(toolPath, args);
+            await RunNebulaAsync(toolPath, args, outputPath);
+            StatusText = GenerateMfa ? "MFA Project Generated!" : "Assets Extracted!";
         }
         catch (Exception ex)
         {
@@ -115,23 +119,36 @@ public partial class FusionViewModel : ObservableObject
 
         foreach (var baseDir in baseDirs)
         {
-            var exePath = Path.Combine(baseDir, "fusion", "Nebula");
-            if (File.Exists(exePath))
-            {
-                return exePath;
-            }
-
+            // Prefer DLL (framework-dependent) for compatibility
             var dllPath = Path.Combine(baseDir, "fusion", "Nebula.dll");
             if (File.Exists(dllPath))
             {
                 return dllPath;
+            }
+
+            var exePath = Path.Combine(baseDir, "fusion", "Nebula");
+            if (File.Exists(exePath))
+            {
+                return exePath;
             }
         }
 
         return null;
     }
 
-    private async Task RunNebulaAsync(string toolPath, string args)
+    private string GenerateMfaFlag(string inputFile, string outputPath)
+    {
+        if (GenerateMfa)
+        {
+            return $"\"{inputFile}\" -o \"{outputPath}\" -m";
+        }
+        else
+        {
+            return $"\"{inputFile}\" -o \"{outputPath}\"";
+        }
+    }
+
+    private async Task RunNebulaAsync(string toolPath, string args, string outputDir)
     {
         LogLines.Add("Running: " + toolPath);
         LogLines.Add("Args: " + args);
@@ -147,8 +164,11 @@ public partial class FusionViewModel : ObservableObject
             UseShellExecute = false,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
-            CreateNoWindow = true
+            CreateNoWindow = true,
+            WorkingDirectory = outputDir
         };
+        
+        startInfo.Environment["NEBULA_MFA_OUTPUT"] = outputDir;
 
         using var process = new Process { StartInfo = startInfo };
 

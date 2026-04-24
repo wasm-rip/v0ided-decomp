@@ -59,6 +59,9 @@
         <!-- Status -->
         <TextBlock Text="{Binding StatusText}" Foreground="#888" Margin="0,0,0,10"/>
 
+        <!-- Copy Log Button -->
+        <Button Content="copy log" Click="CopyLog_Click" HorizontalAlignment="Left" Margin="0,0,0,10"/>
+
         <!-- Log -->
         <Border Background="#080810" BorderBrush="#1a1a2e" BorderThickness="1" CornerRadius="4" Padding="8" Height="200">
             <ScrollViewer>

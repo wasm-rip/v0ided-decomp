@@ -104,10 +104,9 @@ public partial class GodotViewModel : ObservableObject
             Path.GetFullPath("../../"),
             Path.GetFullPath("../../../"),
             Path.GetFullPath("../../../../"),
-            "/Volumes/Seagate/v0ided-decomp",
-            "/Volumes/Seagate/v0ided-decomp/publish",
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp"),
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp", "publish")
+            Path.GetFullPath("../../../../../"),
+            Path.GetFullPath("../../../../../../"),
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp")
         };
 
         LogLines.Add("Looking for GDRE in:");

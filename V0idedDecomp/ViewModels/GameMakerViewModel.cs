@@ -75,11 +75,12 @@ public partial class GameMakerViewModel : ObservableObject
             LogLines.Add("UnderAnalyzer CLI: " + cliPath);
 
             var gameName = Path.GetFileNameWithoutExtension(fullPath);
-            var outputPath = Path.Combine(OutputDirectory, gameName);
+            var outputBase = Path.Combine(OutputDirectory, gameName);
+            var outputPath = Path.Combine(outputBase, "ExportedProject");
 
-            if (Directory.Exists(outputPath))
+            if (Directory.Exists(outputBase))
             {
-                Directory.Delete(outputPath, true);
+                Directory.Delete(outputBase, true);
             }
 
             Directory.CreateDirectory(outputPath);
@@ -119,22 +120,20 @@ public partial class GameMakerViewModel : ObservableObject
 
     private string? FindGameMakerCLI()
     {
-        var possibleBasePaths = new[]
+        var baseDirs = new[]
         {
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "..")),
+            Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "..", "..")),
             AppDomain.CurrentDomain.BaseDirectory,
             Directory.GetCurrentDirectory(),
-            Path.GetFullPath("."),
-            Path.GetFullPath("../"),
-            Path.GetFullPath("../../"),
-            Path.GetFullPath("../../../"),
-            Path.GetFullPath("../../../../"),
-            "/Volumes/Seagate/v0ided-decomp",
-            "/Volumes/Seagate/v0ided-decomp/publish",
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp"),
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp", "publish")
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "v0ided-decomp")
         };
 
-        foreach (var baseDir in possibleBasePaths)
+        foreach (var baseDir in baseDirs)
         {
             if (string.IsNullOrEmpty(baseDir)) continue;
 
@@ -143,17 +142,17 @@ public partial class GameMakerViewModel : ObservableObject
             {
                 var cliDll = Path.Combine(baseDir, "gamemaker", "UnderAnalyzerCLI.dll");
                 if (File.Exists(cliDll))
-                {
                     return cliDll;
-                }
+                
+                cliDll = Path.Combine(baseDir, "UnderAnalyzer-Decompiler", "UndertaleModCli", "bin", "Debug", "net10.0", "UnderAnalyzerCLI.dll");
+                if (File.Exists(cliDll))
+                    return cliDll;
             }
             else
             {
                 var cliExe = Path.Combine(baseDir, "gamemaker", "UnderAnalyzerCLI.exe");
                 if (File.Exists(cliExe))
-                {
                     return cliExe;
-                }
             }
         }
 

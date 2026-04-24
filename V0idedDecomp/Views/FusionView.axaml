@@ -60,6 +60,7 @@
         <!-- Options -->
         <Border Background="#12121c" BorderBrush="#2a2a40" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
             <StackPanel Orientation="Horizontal">
+                <CheckBox Content="generate .mfa project" IsChecked="{Binding GenerateMfa}" Margin="0,0,20,0"/>
                 <CheckBox Content="extract images" IsChecked="{Binding ExtractImages}" Margin="0,0,20,0"/>
                 <CheckBox Content="extract audio" IsChecked="{Binding ExtractAudio}" Margin="0,0,20,0"/>
                 <CheckBox Content="extract fonts" IsChecked="{Binding ExtractFonts}"/>
@@ -67,10 +68,13 @@
         </Border>
 
         <!-- Decompile Button -->
-        <Button Content="decompile" Command="{Binding DecompileCommand}" IsEnabled="{Binding !IsProcessing}" Margin="0,0,0,15"/>
+        <Button Content="Generate MFA / Decompile" Command="{Binding DecompileCommand}" IsEnabled="{Binding !IsProcessing}" Margin="0,0,0,15"/>
 
         <!-- Status -->
         <TextBlock Text="{Binding StatusText}" Foreground="#888" Margin="0,0,0,10"/>
+
+        <!-- Copy Log Button -->
+        <Button Content="copy log" Click="CopyLog_Click" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
         <!-- Log -->
         <Border Background="#080810" BorderBrush="#1a1a2e" BorderThickness="1" CornerRadius="4" Padding="8" Height="200">

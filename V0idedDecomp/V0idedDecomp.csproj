@@ -8,6 +8,7 @@
     <ApplicationIcon>Assets\avalonia-logo.ico</ApplicationIcon>
     <AssemblyName>v0ided-decomp</AssemblyName>
     <RootNamespace>V0idedDecomp</RootNamespace>
+    <RuntimeIdentifiers>osx-arm64;osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

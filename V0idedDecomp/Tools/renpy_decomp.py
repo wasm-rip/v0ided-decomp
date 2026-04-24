@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+import sys
+import os
+
+def main():
+    if len(sys.argv) < 3:
+        print(f"Usage: {sys.argv[0]} rpycdec|rpatool <input_file>")
+        sys.exit(1)
+    
+    tool = sys.argv[1]
+    input_file = sys.argv[2]
+    
+    if tool == "rpycdec":
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from rpycdec import main as rpycdec_main
+        sys.argv = ['rpycdec', 'decompile', input_file]
+        sys.exit(rpycdec_main())
+    elif tool == "rpatool":
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import rpatool
+        sys.argv = ['rpatool', '-x', input_file]
+        sys.exit(rpatool.main())
+    else:
+        print(f"Unknown tool: {tool}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

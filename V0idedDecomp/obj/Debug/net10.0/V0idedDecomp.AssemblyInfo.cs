@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("v0ided-decomp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d43003d5b4f77bc4dfb1495518a1dd6128b48bb5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2559f285574ee00d45ab0ae5d732d6461e9bc7d1")]
 [assembly: System.Reflection.AssemblyProductAttribute("v0ided-decomp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("v0ided-decomp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

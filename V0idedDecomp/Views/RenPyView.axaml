@@ -37,7 +37,7 @@
         <!-- Input -->
         <Border Background="#12121c" BorderBrush="#2a2a40" BorderThickness="1" CornerRadius="8" Padding="15" Margin="0,0,0,15">
             <StackPanel>
-                <TextBlock Text="input file (.rpa, .rpyc)" Foreground="#888" FontSize="11" Margin="0,0,0,5"/>
+                <TextBlock Text="input file or folder (.rpa, .rpyc, .rpy)" Foreground="#888" FontSize="11" Margin="0,0,0,5"/>
                 <Grid ColumnDefinitions="*,Auto">
                     <TextBox Text="{Binding InputFilePath}" Grid.Column="0"/>
                     <Button Grid.Column="1" Content="browse" Click="BrowseInput_Click" Margin="8,0,0,0"/>
@@ -58,6 +58,9 @@
 
         <!-- Status -->
         <TextBlock Text="{Binding StatusText}" Foreground="#888" Margin="0,0,0,10"/>
+
+        <!-- Copy Log Button -->
+        <Button Content="copy log" Click="CopyLog_Click" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
         <!-- Log -->
         <Border Background="#080810" BorderBrush="#1a1a2e" BorderThickness="1" CornerRadius="4" Padding="8" Height="200">
